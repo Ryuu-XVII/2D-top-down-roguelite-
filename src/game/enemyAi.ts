@@ -186,7 +186,7 @@ export function updateEnemies(w: World, dt: number): void {
       sx += (ox / dd) * push;
       sy += (oy / dd) * push;
     }
-    const sep = d.boss ? 0 : 160;
+    const sep = d.boss ? 0 : d.flying ? 300 : 200;
     const mvx = (E.vx[i] + E.kbx[i] + sx * sep) * dt;
     const mvy = (E.vy[i] + E.kby[i] + sy * sep) * dt;
     const blocked = w.slide(E.x[i], E.y[i], r * 0.85, mvx, mvy);

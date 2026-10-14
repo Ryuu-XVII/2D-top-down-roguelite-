@@ -52,6 +52,8 @@ class Heap {
 export interface AStarCosts {
   wall: number;
   floor: number;
+  /** Extra cost for changing direction (straighter corridors and carpets). */
+  turn?: number;
 }
 
 /**
@@ -74,6 +76,8 @@ export function astar(
   const g = new Float64Array(n).fill(Infinity);
   const from = new Int32Array(n).fill(-1);
   const closed = new Uint8Array(n);
+  const dirOf = new Int8Array(n).fill(-1);
+  const turn = costs.turn ?? 0;
   const heap = new Heap(256);
   const start = sy * w + sx;
   const goal = gy * w + gx;
@@ -95,10 +99,11 @@ export function astar(
       const ni = ny * w + nx;
       if (closed[ni]) continue;
       const step = grid.tiles[ni] === TILE_WALL ? costs.wall : costs.floor;
-      const ng = g[cur] + step;
+      const ng = g[cur] + step + (dirOf[cur] >= 0 && dirOf[cur] !== d ? turn : 0);
       if (ng < g[ni]) {
         g[ni] = ng;
         from[ni] = cur;
+        dirOf[ni] = d;
         const hx = Math.abs(nx - gx) + Math.abs(ny - gy);
         heap.push(ni, ng + hx * costs.floor);
       }

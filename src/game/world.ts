@@ -712,7 +712,7 @@ export class World {
   private updateInteractables(intent: Intent): void {
     const p = this.player;
     this.nearInteract = -1;
-    let bd = 60 * 60;
+    let bd = 76 * 76;
     for (let i = 0; i < this.interactables.length; i++) {
       const it = this.interactables[i];
       it.appear = Math.min(1, it.appear + CONFIG.dt * 2.5);

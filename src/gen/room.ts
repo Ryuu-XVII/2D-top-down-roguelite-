@@ -115,7 +115,7 @@ function labelRegions(grid: Grid): { labels: Int32Array; sizes: number[]; seeds:
   return { labels, sizes, seeds };
 }
 
-const COSTS = { wall: CONFIG.astarWallCost, floor: CONFIG.astarFloorCost };
+const COSTS = { wall: CONFIG.astarWallCost, floor: CONFIG.astarFloorCost, turn: 0.6 };
 
 function connectSubtrees(grid: Grid, rng: Rng, node: BspNode, anchors: Map<BspNode, Point>): Point[] {
   if (!node.left || !node.right) {
