@@ -102,11 +102,15 @@ export function titleScreen(onStart: () => void): HTMLElement {
     titleBackdrop(),
     h('div', { class: 'title-wrap' }, logo(), h('div', { class: 'tap-start ol' }, 'Tap or press any key')),
   );
+  let started = false;
   const go = () => {
+    if (started) return;
+    started = true;
     window.removeEventListener('keydown', go);
     onStart();
   };
-  el.addEventListener('pointerdown', go);
+  // 'click' (not pointerdown) so the same tap can't land on the next menu's buttons.
+  el.addEventListener('click', go);
   window.addEventListener('keydown', go);
   const poll = () => {
     if (!el.isConnected) return;
@@ -668,7 +672,7 @@ export function endScreen(st: EndStats, onRetry: () => void, onNew: () => void, 
         ] as [string, string][]
       ).flatMap(([k, v]) => [h('span', { class: 'k' }, k), h('span', {}, v)]),
     ),
-    h('div', { class: 'ol', style: 'margin: 1rem 0; font-size: 1.3rem', html: `${icon('soul', 26)}&nbsp;+${st.souls} souls` }),
+    h('div', { class: 'ol', style: 'margin: 1rem 0; font-size: 1.3rem; display: flex; align-items: center; gap: 0.4rem', html: `${icon('soul', 26)}+${st.souls} souls` }),
     h('div', { class: 'row' }, retry, button('New Run', onNew), button('Title', onTitle, 'alt')),
   );
 }

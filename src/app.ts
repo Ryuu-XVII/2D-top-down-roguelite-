@@ -110,6 +110,7 @@ export class App {
 
     this.loop = new GameLoop({ update: (dt) => this.update(dt), render: (a, fdt) => this.render(a, fdt) });
     this.loop.simulate = false;
+    this.loop.maxFps = this.targetFps();
     this.loop.start();
 
     window.addEventListener('resize', () => this.resize());
@@ -374,7 +375,12 @@ export class App {
     this.renderer.enterRoom(w, run.graph);
     this.hud.buildMinimap(w);
     this.hud.setRoomLabel(`Floor ${run.floor + 1} · ${NODE_NAME[room.kind]} ${run.roomNumber}/${run.roomsOnFloor}`);
-    this.hud.showHints(run.floor === 0 && room.kind === 'start');
+    const firstRoom = run.floor === 0 && room.kind === 'start';
+    this.hud.showHints(firstRoom);
+    if (firstRoom) {
+      const node = run.nodeId;
+      setTimeout(() => this.run === run && run.nodeId === node && this.hud.showHints(false), 15000);
+    }
     this.hud.setVisible(true);
     this.ui.close();
     this.input.menuOpen = false;

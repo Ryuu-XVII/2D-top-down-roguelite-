@@ -54,7 +54,7 @@ html, body {
   letter-spacing: 0.02em;
 }
 .mono { font-family: var(--mono); font-weight: 600; }
-.ico { display: block; flex: none; filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.45)); }
+.ico { display: inline-block; vertical-align: middle; flex: none; filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.45)); }
 
 /* ── HUD ─────────────────────────────────────────────────────────────── */
 #hud { position: fixed; inset: 0; pointer-events: none; }
@@ -441,7 +441,11 @@ button, input, select { font-weight: 900; }
   .cards { justify-content: flex-start; overflow-x: auto; scroll-snap-type: x mandatory; width: 100%; padding: 0.8rem 18vw 1.2rem; }
   .cards .card { scroll-snap-align: center; flex: none; width: 13rem; min-height: 17rem; }
   .logo .lw { font-size: 3.2rem; } .logo .lw.big { font-size: 3.8rem; }
-  .class-card { min-height: 15rem; width: 12rem; }
-  .class-card .portrait { width: 6rem; height: 6rem; }
+  .class-card { min-height: 0; width: 12rem; padding: 0.5rem; gap: 0.3rem; }
+  .class-card .portrait { width: 5rem; height: 5rem; }
   .class-card p { display: none; }
+  .screen h2 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+  .screen .sub { margin: 0 0 0.5rem; }
+  .card .medal { width: 4.2rem; height: 4.2rem; }
+  .card .medal .ico { width: 2.8rem; height: 2.8rem; }
 }

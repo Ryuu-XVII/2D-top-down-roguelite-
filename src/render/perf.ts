@@ -37,7 +37,10 @@ export class PerfMonitor {
   }
 
   frame(dt: number): void {
-    if (dt <= 0 || dt > 0.5) return;
+    if (dt <= 0) return;
+    // Very slow frames still count (clamped) so struggling devices scale down;
+    // background tabs stop the loop entirely, so they never reach here.
+    if (dt > 1) dt = 1;
     this.acc += dt;
     this.frames++;
     if (this.acc < CONFIG.dynResWindow) return;
