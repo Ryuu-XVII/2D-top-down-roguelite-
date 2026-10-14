@@ -7,6 +7,10 @@ It is built from the *Code-Only 2D Top-Down Roguelite* build spec. The spec's ne
 - **Chunky cartoon** (from the reference screenshot): thick ink outlines, flat saturated fills with a single cel highlight, chibi heroes with big eyes, pill-shaped HUD bars (EXP badge, heart HP pill, sword and shield stats, gem counter) and lavender ability tiles.
 - **Gothic castle** (Castlevania): brick-faced castle halls with red carpet runners, flickering torches and candelabras, stained-glass windows throwing moonbeams, cobwebs, coffins and bones. Enemies include bats, skeletons, ghouls, axe armors and gargoyles. The bosses are a two-headed ogre, a rune-carved stone golem and a vampire count. Holy cross, axe and holy water sub-weapons are upgrade cards, and the music is procedural harpsichord and organ.
 
+## Roadmap
+
+The expansion plan, from v0.2 foundations through v1.0 and post-launch seasons, is in [docs/ROADMAP.md](docs/ROADMAP.md). It covers 114 epics across 14 areas, sequenced into 9 milestones, with full feature write-ups in [docs/roadmap/](docs/roadmap/).
+
 ## Run it
 
 ```bash
